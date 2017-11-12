@@ -54,35 +54,47 @@ and open the template in the editor.
         }
         require_once 'loginGegevens.php';
         $conextion = new mysqli(DBSERVER, DBUSER, DBPASS, DBASE);
-        $sql = "SELECT * FROM personen ";
-        $result = mysqli_query($conextion, $sql);
-        if ($result->num_rows === 0) {
+        if (!$conextion->connect_error) {
+//            $sql = "CREATE DATABASE personen ";
+//            $result = mysqli_query($conextion, $sql);
+
+            
+            
+            $sql = "SELECT * FROM personen ";
+            $result = mysqli_query($conextion, $sql);
+            if ($result->num_rows === 0) {
 //            die("lege result set");
-        } else {
+            } else {
 //            echo " result set niet leeg";
-        }
+            }
 
 
-        echo " <h5>  Dit zijn de bestaande personen</h5>
+            echo " <h5>  Dit zijn de bestaande personen</h5>
             <table>
             <tr>
                 <th>Naam</th>
                 <th>Adres</th>
                 <th>Woonplaats</th>
                 <th>Gender</th>
+                <th>SerialzedObject van Persoon</th>
             </tr>";
-        while ($row = mysqli_fetch_array($result)) {
-            echo "<tr>";
-            echo "<td>" . $row['naam'] . "</td>";
-            echo "<td>" . $row['adres'] . "</td>";
-            echo "<td>" . $row['woonplaats'] . "</td>";
-            echo "<td>" . $row['gender'] . "</td>";
-//            echo "<td>" . $row['objectPersoon'] . "</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
+            while ($row = mysqli_fetch_array($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['naam'] . "</td>";
+                echo "<td>" . $row['adres'] . "</td>";
+                echo "<td>" . $row['woonplaats'] . "</td>";
+                echo "<td>" . $row['gender'] . "</td>";
+            echo "<td>" . $row['objectPersoon'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
 
-        mysqli_close($conextion);
+            mysqli_close($conextion);
+        } else {
+            echo 'Zet graag de db aan';
+            echo "<br> <h3> nu hebben we :</h3> ";
+            echo `dir *.txt  /b /a-d `;
+        }
         ?>
         <h4>  Op dit scherm kunt personen toevoegen</h4>
         <hr>

@@ -33,13 +33,14 @@ $result = $conextion->query($query);
 
 //$query =  "ALTER TABLE `personen` CHANGE `objectPersoon` `objectPersoon` LONGTEXT NULL DEFAULT NULL";
 //$query =  "ALTER TABLE `personen` CHANGE `objectPersoon` `objectPersoon` BLOB  NULL";
-//$query = "ALTER TABLE personen ADD objectPersoon BLOB  BINARY AFTER gender";
-//$result = $conextion->query($query);
+$query = "ALTER TABLE personen ADD objectPersoon BLOB   AFTER gender";
+$result = $conextion->query($query);
 
 
 
 echo "<br> connectie\n";
-echo $conextion->connect_error;
+$returnText ="";
+$returnText = $conextion->connect_error;
 //
 //// maak index, pri
 //$query = "CREATE INDEX naamindex ON personen (naam(30)";
@@ -48,5 +49,5 @@ echo $conextion->connect_error;
 echo $result;
 
 //$sql = "ALTER TABLE `personen`  ADD `objectPersoon` MEDIUMBLOB NOT NULL  AFTER `gender`";
-                header("Location: index.php");
+                header("Location: index.php?errorText=$returnText" );
 ?>
