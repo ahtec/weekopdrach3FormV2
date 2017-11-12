@@ -77,6 +77,7 @@
             $returnText = "er is geen database actief";
         }
 
+        
         if ($returnText != "") {
             header("Location: index.php?errorText=$returnText ");   // terug naar index.php
         } else {
