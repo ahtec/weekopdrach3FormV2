@@ -93,6 +93,7 @@ and open the template in the editor.
             <table>
             <tr>
                 <th>Naam</th>
+                <th>ww</th>
                 <th>Adres</th>
                 <th>Woonplaats</th>
                 <th>Gender</th>
@@ -101,6 +102,7 @@ and open the template in the editor.
                   while ($row = mysqli_fetch_array($result)) {
                       echo "<tr>";
                       echo "<td>" . $row['naam'] . "</td>";
+                      echo "<td>" . $row['ww'] . "</td>";
                       echo "<td>" . $row['adres'] . "</td>";
                       echo "<td>" . $row['woonplaats'] . "</td>";
                       echo "<td>" . $row['gender'] . "</td>";
@@ -122,6 +124,7 @@ and open the template in the editor.
                     <form name="personenForm" action="voegPersoonToe.php" onsubmit="return validate(this)" >
                         <table>
                             <tr> <td> Naam           </td> <td>  <input type="text" name="naam" >  </td>
+                            <tr> <td> wachtwoord     </td> <td>  <input type="text" name="ww" >  </td>
                             <tr> <td> Adres          </td> <td>  <input type="text" name="adres" ></td>
                             <tr> <td> Woonplaats     </td> <td>  <input type="text" name="woonplaats" ></td>
                             <tr> <td>   

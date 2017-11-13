@@ -3,11 +3,13 @@
     </head>
     <div>
         <?php
+        //require_once 'fpdf.php';
         require_once 'loginGegevens.php';
         require_once 'objectPersoon.php';
         $returnText = "";
 
         $naam = $_GET['naam'];
+        $ww = $_GET['ww'];
 //        $naam = htmlspecialchars($naam);
         $adres = $_GET['adres'];
         $woonplaats = $_GET['woonplaats'];
@@ -15,6 +17,8 @@
 
 //        $regel = "<naam> " . $_GET['naam'] ."</naam>";
         $regel = maakXml("naam", $_GET['naam']);
+        storeRegel($naam, $regel);
+        $regel = maakXml("ww", $_GET['ww']);
         storeRegel($naam, $regel);
 
         $regel = maakXml("adres", $_GET['adres']);
@@ -26,6 +30,9 @@
         $regel = maakXml("Gender", $_GET['gender']);
         storeRegel($naam, $regel);
 
+        $pfdFileClasse = new FPDF();
+//        $pfdFileClasse.
+        
         $connectie = new mysqli(DBSERVER, DBUSER, DBPASS, DBASE);
         if (!$connectie->connect_error) {
             if (naamBestaat($naam, $connectie)) {
@@ -43,7 +50,7 @@
                 storeRegel($naam, $serializeData);
                 storeRegel($naam, "Einde serializeData");
 
-                $query = "INSERT INTO `personen` (`naam`, `adres`, `woonplaats`, `gender`,`objectPersoon`) VALUES ( '$naam', '$adres', '$woonplaats','$gender' , '$serializeData' )";
+                $query = "INSERT INTO `personen` (`naam`, `ww`, `adres`, `woonplaats`, `gender`,`objectPersoon`) VALUES ( '$naam', '$ww','$adres', '$woonplaats','$gender' , '$serializeData' )";
 
                 //                $query = "INSERT INTO `personen` (`naam`, `adres`, `woonplaats`, `gender` ) VALUES ( '$naam', '$adres', '$woonplaats', '$gender'  )";
                 $result = $connectie->query($query);
