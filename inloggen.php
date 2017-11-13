@@ -68,8 +68,8 @@
     <body STYLE="font-size: 20px; font-family:Courier New, Courier, monospace; background-color: antiquewhite;" >
         <form   action="checkPersoonExist.php" onsubmit="return validate(this)" method="GET">
             <table>
-                <tr> <td>  uw user login naam     </td> <td>    <input type=text name=naam value='qaz' id="naam">   </td>  </tr>
-                <tr> <td>  uw  wachtwoord         </td> <td>    <input type=password name=ww  id="ww" >             </td> </tr>
+                <tr> <td>  uw user login naam     </td> <td>    <input type=text name=naam value='gerard' id="naam">   </td>  </tr>
+                <tr> <td>  uw  wachtwoord         </td> <td>    <input type=password name=ww value='doets' id="ww" >             </td> </tr>
                 <tr> <td>                         </td> <td>    <input type=submit value=Verstuur id="loginKnop">   </td> </tr>
             </table>
         </form>

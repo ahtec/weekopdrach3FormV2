@@ -24,7 +24,7 @@ $result = $conextion->query($query);
 
 // maak tabel personen
 //$query = "CREATE TABLE  personen ( naam VARCHAR(30)   , adres VARCHAR(30)  , woonplaats VARCHAR(30) , gender VARCHAR(30) , objectPersoon VARCHAR(100) , PRIMARY KEY (naam) )";
-$query = "CREATE TABLE  personen ( naam VARCHAR(30)   , adres VARCHAR(30)  , woonplaats VARCHAR(30) , gender VARCHAR(30) , objectPersoon VARCHAR(100) , PRIMARY KEY (naam) )";
+$query = "CREATE TABLE  personen ( naam VARCHAR(30)   , ww VARCHAR(30)  , adres VARCHAR(30)  , woonplaats VARCHAR(30) , gender VARCHAR(30) , objectPersoon VARCHAR(100) , PRIMARY KEY (naam) )";
 //ALTER TABLE `personen` ADD `objectPersoon` BLOB NOT NULL AFTER `gender`;
 //$query = "CREATE TABLE  personen ( naam VARCHAR(30))   , adres VARCHAR(30)  , woonplaats VARCHAR(30) , gender VARCHAR(30) PRIMARY KEY (naam) )";
 //$query = 'CREATE TABLE  personen (naam VARCHAR(30))   , (adres VARCHAR(30) , (adres VARCHAR(30))  , (woonplaats VARCHAR(30)) ,(gender VARCHAR(30))';
