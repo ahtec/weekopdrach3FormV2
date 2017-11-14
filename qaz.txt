@@ -1,6 +1,0 @@
-naam: qaz
-ww  : qaz
-naam: qaz
-ww  : qaz
-naam: qaz
-ww  : 

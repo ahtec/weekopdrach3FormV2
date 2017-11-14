@@ -26,7 +26,7 @@
 //"SELECT * FROM `personen` WHERE `naam` = '".$naam."'";
 
             $sql = "SELECT * FROM `personen` WHERE `naam` = '" . $naam . "'";
-echo $sql;
+//echo $sql;
             $result = mysqli_query($conextion, $sql);
             
             
@@ -38,24 +38,16 @@ echo $sql;
 
 
             echo " <h5>  Dit is de pagina achter een succesvolle login</h5>
-            <table>
-            <tr>
-                <th>Naam</th>
-                <th>ww</th>
-                <th>Adres</th>
-                <th>Woonplaats</th>
-                <th>Gender</th>
-                <th>SerialzedObject van Persoon</th>
-            </tr>";
+            <table> ";
             while ($row = mysqli_fetch_array($result)) {
-                echo "<tr>";
-                echo "<td>" . $row['naam'] . "</td>";
-                echo "<td>" . $row['ww'] . "</td>";
-                echo "<td>" . $row['adres'] . "</td>";
-                echo "<td>" . $row['woonplaats'] . "</td>";
-                echo "<td>" . $row['gender'] . "</td>";
+//                echo "<tr>";
+                echo " <tr><td>" . $row['naam'] . "</td></tr>";
+//                echo "<td>" . $row['ww'] . "</td>";
+                echo "<tr><td>" . $row['adres'] . "</td></t>";
+                echo "<tr><td>" . $row['woonplaats'] . "</td></tr>";
+                echo "<tr><td>" . $row['gender'] . "</td></tr>";
 //                echo "<td>" . $row['objectPersoon'] . "</td>";
-                echo "</tr>";
+//                echo "</tr>";
             }
             echo "</table>";
         }

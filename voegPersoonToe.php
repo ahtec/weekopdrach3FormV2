@@ -3,13 +3,14 @@
     </head>
     <div>
         <?php
-        //require_once 'fpdf.php';
+        require_once 'versleutel.php';
         require_once 'loginGegevens.php';
         require_once 'objectPersoon.php';
         $returnText = "";
 
-        $naam = $_GET['naam'];
-        $ww = $_GET['ww'];
+        $naam = $_REQUEST['naam'];
+        $ww = $_REQUEST['ww'];
+        $ww = verSleutel($ww);
 //        $naam = htmlspecialchars($naam);
         $adres = $_GET['adres'];
         $woonplaats = $_GET['woonplaats'];
@@ -18,8 +19,9 @@
 //        $regel = "<naam> " . $_GET['naam'] ."</naam>";
         $regel = maakXml("naam", $_GET['naam']);
         storeRegel($naam, $regel);
-        $regel = maakXml("ww", $_GET['ww']);
-        storeRegel($naam, $regel);
+        $versleuteldWW = verSleutel($_GET['ww']);
+//        $regel = maakXml("ww", $_GET['ww']);
+//        storeRegel($naam, $regel);
 
         $regel = maakXml("adres", $_GET['adres']);
         storeRegel($naam, $regel);
@@ -30,7 +32,7 @@
         $regel = maakXml("Gender", $_GET['gender']);
         storeRegel($naam, $regel);
 
-        $pfdFileClasse = new FPDF();
+//        $pfdFileClasse = new FPDF();
 //        $pfdFileClasse.
         
         $connectie = new mysqli(DBSERVER, DBUSER, DBPASS, DBASE);
@@ -39,20 +41,20 @@
                 // naam bestaat al, we doen niets
                 $returnText = "Naam $naam bestaat al";
             } else {
-                $ojPersoon = new persoon();
-                $ojPersoon->naam = $naam;
-                $ojPersoon->adres = $adres;
-                $ojPersoon->woonplaats = $woonplaats;
-                $ojPersoon->gender = $gender;
+//                $ojPersoon = new persoon();
+//                $ojPersoon->naam = $naam;
+//                $ojPersoon->adres = $adres;
+//                $ojPersoon->woonplaats = $woonplaats;
+//                $ojPersoon->gender = $gender;
+//
+//                storeRegel($naam, "Start serializeData");
+//                $serializeData = serialize($ojPersoon);
+//                storeRegel($naam, $serializeData);
+//                storeRegel($naam, "Einde serializeData");
 
-                storeRegel($naam, "Start serializeData");
-                $serializeData = serialize($ojPersoon);
-                storeRegel($naam, $serializeData);
-                storeRegel($naam, "Einde serializeData");
+//                $query = "INSERT INTO `personen` (`naam`, `ww`, `adres`, `woonplaats`, `gender`,`objectPersoon`) VALUES ( '$naam', '$ww','$adres', '$woonplaats','$gender' , '$serializeData' )";
 
-                $query = "INSERT INTO `personen` (`naam`, `ww`, `adres`, `woonplaats`, `gender`,`objectPersoon`) VALUES ( '$naam', '$ww','$adres', '$woonplaats','$gender' , '$serializeData' )";
-
-                //                $query = "INSERT INTO `personen` (`naam`, `adres`, `woonplaats`, `gender` ) VALUES ( '$naam', '$adres', '$woonplaats', '$gender'  )";
+                $query = "INSERT INTO `personen` (`naam`, `ww`, `adres`, `woonplaats`, `gender` ) VALUES ( '$naam', '$versleuteldWW', '$adres', '$woonplaats', '$gender'  )";
                 $result = $connectie->query($query);
 
 
@@ -86,9 +88,9 @@
 
         
         if ($returnText != "") {
-            header("Location: index.php?errorText=$returnText ");   // terug naar index.php
+            header("Location: inloggen.php?errorText=$returnText ");   // terug naar index.php
         } else {
-            header("Location: index.php");   // terug naar index.php
+            header("Location: inloggen.php");   // terug naar index.php
         }
 
 //            exit;

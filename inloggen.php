@@ -34,7 +34,7 @@
             var wwWaarde = document.getElementByID("ww").value;
             console.log(wwWaarde);
 
-            var checkWindow = window.open("http://localhost/weekOpdracht3/checkPersoonExist.php?naam=" + naamWaarde + "&ww=" + wwWaarde,"" ,"width=200,height=100" );
+//            var checkWindow = window.open("http://localhost/weekOpdracht3/checkPersoonExist.php?naam=" + naamWaarde + "&ww=" + wwWaarde,"" ,"width=200,height=100" );
             console.log(test);
 
 
@@ -62,11 +62,25 @@
             return "";
         }
 
-       
+
 
     </script>
+
+
     <body STYLE="font-size: 20px; font-family:Courier New, Courier, monospace; background-color: antiquewhite;" >
-        <form   action="checkPersoonExist.php" onsubmit="return validate(this)" method="GET">
+        <?php
+        if (isset($_REQUEST)) {
+            if (isset($_REQUEST['errorTxt'])) {
+                echo "<h2> ";
+                echo $_REQUEST['errorTxt'];
+                echo "</h2> ";
+            }
+        }
+
+       
+        ?>
+
+        <form   action="checkPersoonExist.php" onsubmit="return validate(this)" method="POST">
             <table>
                 <tr> <td>  uw user login naam     </td> <td>    <input type=text name=naam value='gerard' id="naam">   </td>  </tr>
                 <tr> <td>  uw  wachtwoord         </td> <td>    <input type=password name=ww value='doets' id="ww" >             </td> </tr>
