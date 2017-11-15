@@ -27,22 +27,10 @@
 
         function validateNaam(field)
         {
-
-
-            var naamWaarde = document.getElementByID("naam").value;
-            console.log(naamWaarde);
-            var wwWaarde = document.getElementByID("ww").value;
-            console.log(wwWaarde);
-
-//            var checkWindow = window.open("http://localhost/weekOpdracht3/checkPersoonExist.php?naam=" + naamWaarde + "&ww=" + wwWaarde,"" ,"width=200,height=100" );
-//            console.log(test);
-
-
-//                alert(field);
-//            var pattern = new RegExp(/[()~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/); //unacceptable chars
-//            if (pattern.test(field)) {
-//                return ("Gebruik alleen alpha en numerieke characters");
-//            }
+            var pattern = new RegExp(/[()~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/); //unacceptable chars
+            if (pattern.test(field)) {
+                return ("Gebruik alleen alpha en numerieke characters");
+            }
             if (field == "") {
                 return "Naam mag niet leeg zijn";
             }
@@ -64,29 +52,45 @@
 
 
 
+        function loadXMLDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("naamBestaatNiet").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "userInvoerenNaInloggen.php", true);
+            xhttp.send();
+        }
+
     </script>
 
 
     <body STYLE="font-size: 20px; font-family:Courier New, Courier, monospace; background-color: antiquewhite;" >
-        <?php
-        if (isset($_REQUEST)) {
+    <?php
+    if (isset($_REQUEST)) {
 //            echo "<br>sadfds".$_REQUEST['errorText'];;
-            if (isset($_REQUEST['errorTxt'])) {
-                $errorTxt = $_REQUEST['errorTxt'];
-                echo "<h2> " . $errorTxt . "</h2> ";
-                if ($errorTxt == "Naam bestaat niet") {
-                    echo "<form action=userInvoerenNaInloggen.php method=POST>";
-                    echo "<button type=submit value=teams  >  user aanmaken </button>";
-                    echo " </form>";
-                }  
+        if (isset($_REQUEST['errorTxt'])) {
+            $errorTxt = $_REQUEST['errorTxt'];
+            echo "<p id=naamBestaatNiet>";
+            echo "<h2> " . $errorTxt . "</h2> ";
+            echo "</p>";
+            if ($errorTxt == "Naam bestaat niet") {
+                
+                echo "<button type=button onclick=loadXMLDoc()>Change Content</button>";
+                
+//                echo "<form action=userInvoerenNaInloggen.php method=POST>";
+//                echo "<button type=submit value=teams  >  user aanmaken </button>";
+//                echo " </form>";
             }
         }
-        ?>
+    }
+    ?>
 
         <form   action="checkPersoonExist.php" onsubmit="return validate(this)" method="POST">
             <table>
-                <tr> <td>  uw user login naam     </td> <td>    <input type=text name=naam value='gerard' id="naam">   </td>  </tr>
-                <tr> <td>  uw  wachtwoord         </td> <td>    <input type=password name=ww value='doets' id="ww" >             </td> </tr>
+                <tr> <td>  uw user login naam     </td> <td>    <input type=text name=naam  id="naam">   </td>  </tr>
+                <tr> <td>  uw  wachtwoord         </td> <td>    <input type=password name=ww  id="ww" >             </td> </tr>
                 <tr> <td>                         </td> <td>    <input type=submit value=Verstuur id="loginKnop">   </td> </tr>
             </table>
         </form>

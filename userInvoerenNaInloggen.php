@@ -1,6 +1,51 @@
 <html>
     <head>
         
+    <script>
+
+        function validate(form) {
+            return true;
+            fail = validateNaam(form.naam.value)
+            fail = validateWW(form.ww.value)
+
+            if (fail == "")
+                return true
+            else {
+                alert(fail);
+                return false
+            }
+        }
+
+        function validateNaam(field)
+        {
+            var pattern = new RegExp(/[()~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/); //unacceptable chars
+            if (pattern.test(field)) {
+                return ("Gebruik alleen alpha en numerieke characters");
+            }
+            if (field == "") {
+                return "Naam mag niet leeg zijn";
+            }
+            return "";
+        }
+
+        function validateWW(field)
+        {
+            //                alert(field);
+//            var pattern = new RegExp(/[()~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/); //unacceptable chars
+            //          if (pattern.test(field)) {
+            //               return ("Gebruik alleen alpha en numerieke characters");
+            //           }
+            if (field == "") {
+                return "vul wachtwoord in";
+            }
+            return "";
+        }
+
+
+
+    </script>
+
+        
     </head>
    <body STYLE="font-size: 20px; font-family:Courier New, Courier, monospace; background-color: antiquewhite;" >
         
