@@ -35,7 +35,7 @@
             console.log(wwWaarde);
 
 //            var checkWindow = window.open("http://localhost/weekOpdracht3/checkPersoonExist.php?naam=" + naamWaarde + "&ww=" + wwWaarde,"" ,"width=200,height=100" );
-            console.log(test);
+//            console.log(test);
 
 
 //                alert(field);
@@ -70,14 +70,17 @@
     <body STYLE="font-size: 20px; font-family:Courier New, Courier, monospace; background-color: antiquewhite;" >
         <?php
         if (isset($_REQUEST)) {
+//            echo "<br>sadfds".$_REQUEST['errorText'];;
             if (isset($_REQUEST['errorTxt'])) {
-                echo "<h2> ";
-                echo $_REQUEST['errorTxt'];
-                echo "</h2> ";
+                $errorTxt = $_REQUEST['errorTxt'];
+                echo "<h2> " . $errorTxt . "</h2> ";
+                if ($errorTxt == "Naam bestaat niet") {
+                    echo "<form action=userInvoerenNaInloggen.php method=POST>";
+                    echo "<button type=submit value=teams  >  user aanmaken </button>";
+                    echo " </form>";
+                }  
             }
         }
-
-       
         ?>
 
         <form   action="checkPersoonExist.php" onsubmit="return validate(this)" method="POST">

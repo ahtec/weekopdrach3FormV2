@@ -9,7 +9,7 @@
             <?php
             require_once 'versleutel.php';
             require_once 'loginGegevens.php';
-            require_once 'objectPersoon.php';
+//            require_once 'objectPersoon.php';
 
 
             $returnText = "";

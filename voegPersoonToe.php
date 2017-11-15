@@ -88,9 +88,10 @@
 
         
         if ($returnText != "") {
-            header("Location: inloggen.php?errorText=$returnText ");   // terug naar index.php
+            header("Location: inloggen.php?errorTxt=$returnText ");   // terug naar index.php
         } else {
-            header("Location: inloggen.php");   // terug naar index.php
+            $returnText = "User is toegevoegd";
+            header("Location: inloggen.php?errorTxt=$returnText ");   // terug naar index.php
         }
 
 //            exit;

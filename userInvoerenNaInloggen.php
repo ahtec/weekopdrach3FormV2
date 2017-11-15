@@ -2,8 +2,7 @@
     <head>
         
     </head>
-    <body>
-
+   <body STYLE="font-size: 20px; font-family:Courier New, Courier, monospace; background-color: antiquewhite;" >
         
         <h4> Op dit scherm kunt uw gegevens invoeren</h4>
         <hr>
